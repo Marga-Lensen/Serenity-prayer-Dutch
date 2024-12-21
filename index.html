@@ -47,27 +47,91 @@
         font-size: 1.6rem;
         margin: 0.5em 0;
         line-height: 1.5;
-        font-weight: 00;
+        font-weight: 500;
       }
-      @media (max-width: 768px) {
+      /*@media (max-width: 768px) {
         .card {
-          width: 90%; /* Adjust for smaller screens */
+          width: 90%; Adjust for smaller screens
           font-size: 0.9rem;
         }
 
         h2 {
           font-size: 1.8rem;
         }
-      }
+      }*/
+      .language-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
     </style>
   </head>
   <body>
-    <div class="card">
-      <h2>Het Gebed om Kalmte</h2>
-      <p>God, geef me de kalmte</p>
-      <p>om te aanvaarden wat ik niet kan veranderen,</p>
-      <p>de moed om te veranderen wat ik kan veranderen,</p>
-      <p>en de wijsheid om het verschil te zien.</p>
-    </div>
+    <body>
+      <div class="language-selector">
+        <label for="language">Kies je taal:</label>
+        <select id="language">
+          <option value="dutch">Nederlands</option>
+          <option value="english">Engels</option>
+          <option value="german">Duits</option>
+        </select>
+      </div>
+    
+      <div class="card">
+        <h2 id="prayer-title">Het Gebed om Kalmte</h2>
+        <p id="line1">God, geef me de kalmte</p>
+        <p id="line2">om te aanvaarden wat ik niet kan veranderen,</p>
+        <p id="line3">de moed om te veranderen wat ik kan veranderen,</p>
+        <p id="line4">en de wijsheid om het verschil te zien.</p>
+      </div>
+      <script>
+        const translations = {
+          dutch: {
+            title: "Het Gebed om Kalmte",
+            lines: [
+              "God, geef me de kalmte",
+              "om te aanvaarden wat ik niet kan veranderen,",
+              "de moed om te veranderen wat ik kan veranderen,",
+              "en de wijsheid om het verschil te zien."
+            ]
+          },
+          english: {
+            title: "The Serenity Prayer",
+            lines: [
+              "God, grant me the serenity",
+              "to accept the things I cannot change,",
+              "the courage to change the things I can,",
+              "and the wisdom to know the difference."
+            ]
+          },
+          german: {
+            title: "Gelassenheitsgebet",
+            lines: [
+              "Gott, gib mir die Gelassenheit,",
+              "Dinge hinzunehmen, die ich nicht ändern kann,",
+              "den Mut, Dinge zu ändern, die ich ändern kann,",
+              "und die Weisheit, das eine vom anderen zu unterscheiden."
+            ]
+          }
+        };
+    
+        const languageSelector = document.getElementById("language");
+        const prayerTitle = document.getElementById("prayer-title");
+        const line1 = document.getElementById("line1");
+        const line2 = document.getElementById("line2");
+        const line3 = document.getElementById("line3");
+        const line4 = document.getElementById("line4");
+    
+        languageSelector.addEventListener("change", (event) => {
+          const selectedLanguage = event.target.value;
+          const translation = translations[selectedLanguage];
+    
+          prayerTitle.textContent = translation.title;
+          line1.textContent = translation.lines[0];
+          line2.textContent = translation.lines[1];
+          line3.textContent = translation.lines[2];
+          line4.textContent = translation.lines[3];
+        });
+      </script>
   </body>
 </html>
