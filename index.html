@@ -64,19 +64,57 @@
       top: 10px;
       right: 10px;
     }
+    .flag-buttons {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .flag-buttons img {
+      width: 50px;
+      height: auto;
+      cursor: pointer;
+      border: 2px solid transparent;
+      border-radius: 5px;
+    }
+
+    .flag-buttons img:hover {
+      border-color: #555;
+    }
     </style>
   </head>
   <body>
     <body>
-      <div class="language-selector">
+<!--       <div class="language-selector">
         <label for="language">Kies je taal:</label>
         <select id="language">
           <option value="dutch">Nederlands</option>
           <option value="english">Engels</option>
           <option value="german">Duits</option>
         </select>
+      </div> -->
+      <div class="flag-buttons">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg"
+          alt="Dutch"
+          id="flag-dutch"
+          title="Nederlands"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Flag_of_the_United_States.svg"
+          alt="English"
+          id="flag-english"
+          title="English"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Flag_of_Germany.svg"
+          alt="German"
+          id="flag-german"
+          title="Deutsch"
+        />
       </div>
-    
       <div class="card">
         <h2 id="prayer-title">Het Gebed om Kalmte</h2>
         <p id="line1">God, geef me de kalmte</p>
@@ -114,24 +152,35 @@
             ]
           }
         };
-    
-        const languageSelector = document.getElementById("language");
+       // Reference the flag elements
+        const flagDutch = document.getElementById("flag-dutch");
+        const flagEnglish = document.getElementById("flag-english");
+        const flagGerman = document.getElementById("flag-german");
+
+        // const languageSelector = document.getElementById("language");
+            // Function to update the prayer text based on the selected language
         const prayerTitle = document.getElementById("prayer-title");
         const line1 = document.getElementById("line1");
         const line2 = document.getElementById("line2");
         const line3 = document.getElementById("line3");
         const line4 = document.getElementById("line4");
     
-        languageSelector.addEventListener("change", (event) => {
-          const selectedLanguage = event.target.value;
-          const translation = translations[selectedLanguage];
-    
+        // languageSelector.addEventListener("change", (event) => {
+        //   const selectedLanguage = event.target.value;
+        //   const translation = translations[selectedLanguage];
+        function setLanguage(language) {
+          const translation = translations[language];
           prayerTitle.textContent = translation.title;
           line1.textContent = translation.lines[0];
           line2.textContent = translation.lines[1];
           line3.textContent = translation.lines[2];
           line4.textContent = translation.lines[3];
-        });
+        }
+        // });
+        // Add event listeners to the flags
+        flagDutch.addEventListener("click", () => setLanguage("dutch"));
+        flagEnglish.addEventListener("click", () => setLanguage("english"));
+        flagGerman.addEventListener("click", () => setLanguage("german"));
       </script>
   </body>
 </html>
