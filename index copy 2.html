@@ -47,16 +47,32 @@
         font-size: 2rem;
         font-weight: bold;
         display: block;
+        margin-bottom: 1em;
       }
-      #prayer-content {
+      #prayer-text {
         font-size: 1.6rem;
 
-        /* white-space: pre-line; */
+        white-space: pre-line;
       
+        margin: 0.5em 0;
         line-height: 1.8;
         font-weight: 500;
       }
+      /*@media (max-width: 768px) {
+        .card {
+          width: 90%; Adjust for smaller screens
+          font-size: 0.9rem;
+        }
 
+        h2 {
+          font-size: 1.8rem;
+        }
+      }*/
+/*       .language-selector {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    } */
     .flag-buttons {
       position: fixed;
       top: 10px;
@@ -102,54 +118,62 @@
         />
       </div>
       <div class="card">
-        <div id="prayer-content"></div>
-        <!-- <h2 id="prayer-title">Het Gebed om Kalmte</h2> 
+        <h2 id="prayer-title">Het Gebed om Kalmte</h2>
         <div id="prayer-text">
           God, geef me de kalmte<br />
           om te aanvaarden wat ik niet kan veranderen,<br />
           de moed om te veranderen wat ik kan veranderen,<br />
           en de wijsheid om het verschil te zien.
-        </div>-->
+        </div>
       </div>
       
       <script>
         const translations = {
           dutch: {
-            content: `<span class="prayer-title">Het Gebed om Kalmte</span><br>
-  God, geef me de kalmte<br>
-  om te aanvaarden wat ik niet kan veranderen,<br>
-  de moed om te veranderen wat ik kan veranderen,<br>
-  en de wijsheid om het verschil te zien.`
+            title: "Het Gebed om Kalmte",
+            text: `
+            God, geef me de kalmte
+            om te aanvaarden wat ik niet kan veranderen,
+            de moed om te veranderen wat ik kan veranderen,
+            en de wijsheid om het verschil te zien.
+            `
           },
           english: {
-            content: `<span class="prayer-title">The Serenity Prayer</span><br>
-  God, grant me the serenity<br>
-  to accept the things I cannot change,<br>
-  the courage to change the things I can,<br>
-  and the wisdom to know the difference.`
+            title: "The Serenity Prayer",
+            text: `
+            God, grant me the serenity
+            to accept the things I cannot change,
+            the courage to change the things I can,
+            and the wisdom to know the difference.
+            `
           },
           german: {
-            content: `<span class="prayer-title">Gelassenheitsgebet</span><br>
-  Gott, gib mir die Gelassenheit,<br>
-  Dinge hinzunehmen, die ich nicht ändern kann,<br>
-  den Mut, Dinge zu ändern, die ich ändern kann,<br>
-  und die Weisheit, das eine vom anderen zu unterscheiden.`
+            title: "Gelassenheitsgebet",
+            text: `Gott, gib mir die Gelassenheit,
+      Dinge hinzunehmen, die ich nicht ändern kann,
+      den Mut, Dinge zu ändern, die ich ändern kann,
+      und die Weisheit, das eine vom anderen zu unterscheiden.`
           }
         };
-  
-        const prayerContent = document.getElementById("prayer-content");
-  
+      
+        const prayerTitle = document.getElementById("prayer-title");
+        const prayerText = document.getElementById("prayer-text");
+      
+        const flagDutch = document.getElementById("flag-dutch");
+        const flagEnglish = document.getElementById("flag-english");
+        const flagGerman = document.getElementById("flag-german");
+      
         function setLanguage(language) {
-          prayerContent.innerHTML = translations[language].content;
+          const translation = translations[language];
+          prayerTitle.textContent = translation.title;
+          // prayerText.innerHTML = translation.text.replace(/\n/g, "<br />");
+          prayerText.innerHTML = translation.text;
         }
-  
-        document.getElementById("flag-dutch").addEventListener("click", () => setLanguage("dutch"));
-        document.getElementById("flag-english").addEventListener("click", () => setLanguage("english"));
-        document.getElementById("flag-german").addEventListener("click", () => setLanguage("german"));
-  
-        // Set initial language
-        setLanguage("dutch");
-        setLanguage("english");
+      
+        flagDutch.addEventListener("click", () => setLanguage("dutch"));
+        flagEnglish.addEventListener("click", () => setLanguage("english"));
+        flagGerman.addEventListener("click", () => setLanguage("german"));
       </script>
-    </body>
-  </html>
+      
+  </body>
+</html>
